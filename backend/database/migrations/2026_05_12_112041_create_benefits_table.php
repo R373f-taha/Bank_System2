@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('benefits', function (Blueprint $table) {
             $table->id();
             $table->string('title', 255);
-            $table->text('description')->nullable();
             $table->string('icon_name', 100)->nullable();
             $table->integer('display_order')->unsigned()->default(0);
             $table->boolean('is_active')->default(true);
