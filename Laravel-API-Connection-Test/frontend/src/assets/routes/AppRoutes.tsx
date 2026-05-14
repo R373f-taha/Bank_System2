@@ -5,11 +5,16 @@ import Careers from '../pages/Careers';
 import LogIn from '../pages/LogIn';
 import SignUp from '../pages/SignUp';
 import Security from '../pages/Security';
+import RootLayout from '../components/sharedComponents/layOut/RootLayout';
 
 export const router = createBrowserRouter([{
     path:'/',
-    element:<Home/>,
+    element:<RootLayout/>,
     children:[
+        {
+            path:"/",
+            element:<Home/>
+        },
         {
             path:'about',
             element:<About/>
