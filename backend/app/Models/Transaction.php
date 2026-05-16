@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
-    protected $guarded = [];
+    use HasFactory, SoftDeletes; 
 
+    protected $guarded = [];
 
     protected $casts = [
         'amount' => 'decimal:2',
@@ -22,12 +25,11 @@ class Transaction extends Model
         return $this->belongsTo(Customer::class);
     }
 
-      public function getFormattedAmountAttribute(): string
+    public function getFormattedAmountAttribute(): string
     {
         $prefix = $this->type === 'credit' ? '+' : '-';
         return $prefix . number_format($this->amount, 2);
     }
-
 
     public function getStatusBadgeAttribute(): string
     {
