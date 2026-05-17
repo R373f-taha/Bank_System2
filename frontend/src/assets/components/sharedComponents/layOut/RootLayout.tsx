@@ -30,7 +30,8 @@ const RootLayout = () => {
         { content: "Home", href: "/" },
         { content: "About", href: "/about" },
         { content: "Security", href: "/security" },
-        { content: "Careers", href: "/careers" }
+        { content: "Careers", href: "/careers" },
+        { content: "Dashboard", href: "/dashboard" },
     ];
 
     
