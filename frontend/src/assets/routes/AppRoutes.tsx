@@ -6,6 +6,7 @@ import LogIn from '../pages/LogIn';
 import SignUp from '../pages/SignUp';
 import Security from '../pages/Security';
 import RootLayout from '../components/sharedComponents/layOut/RootLayout';
+import Dashboard from '../pages/Dashboard';
 
 export const router = createBrowserRouter([{
     path:'/',
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([{
         {
         path:'signup',
         element:<SignUp />
+        },
+        {
+            path:'dashboard',   
+            element:<Dashboard />
         }
     ]
 }])
