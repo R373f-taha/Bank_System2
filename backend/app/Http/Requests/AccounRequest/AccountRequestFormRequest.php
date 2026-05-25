@@ -28,7 +28,7 @@ class AccountRequestFormRequest extends FormRequest
             'date_of_birth' => 'required|date|before:today',
             'gender' => 'required|in:male,female',
             'marital_status' => 'required|in:single,married,divorced,widowed',
-            'identity_number' => 'required|string|max:50',
+            'identity_number' => 'required|string|min:8|max:50|unique:account_requests,identity_number',
             'address' => 'required|string',
             'occupation' => 'required|string|max:255',
             'deposit_amount' => 'required|numeric|min:0',
