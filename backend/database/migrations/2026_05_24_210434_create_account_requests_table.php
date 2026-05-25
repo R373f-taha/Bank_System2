@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('date_of_birth');
             $table->enum('gender', ['male', 'female']);
             $table->enum('marital_status', ['single', 'married', 'divorced', 'widowed']);
-            $table->string('identity_number', 50);
+            $table->string('identity_number', 50)->unique();
             $table->text('address');
             $table->string('occupation', 255);
             $table->decimal('deposit_amount', 15, 2);
@@ -29,6 +29,7 @@ return new class extends Migration
             // Additional
             $table->string('email', 255)->nullable();
             $table->text('admin_notes')->nullable();
+         //   $table->string('unique_link', 64)->unique()->nullable();
             $table->timestamp('verified_at')->nullable();
 
             $table->timestamps();
