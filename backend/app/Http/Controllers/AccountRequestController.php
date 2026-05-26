@@ -16,6 +16,14 @@ class AccountRequestController extends Controller
     public function __construct(
         private AccountRequestService $service
     ) {}
+
+    public function index(){
+
+    return   response()->json(['message'=>'All Requests',
+    'data'=>AccountRequest::all()],
+
+    200);
+    }
     /**
      * [CUSTOMER] Create account request with all data
      * POST /api/account-request
