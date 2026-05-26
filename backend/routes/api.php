@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 // ------------------- مسارات عامة (لا تحتاج تسجيل دخول) -------------------
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-
+  Route::post('account/account-request', [AccountRequestController::class, 'create']);
 
 // ------------------- مسارات محمية للمستخدمين العاديين -------------------
 Route::middleware('auth:sanctum')->group(function () {
@@ -16,7 +16,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [AuthController::class, 'user']);
 
     // مسارات خاصة بتقديم الطلبات والتحقق منها للمستخدم العادي
-    Route::post('account/account-request', [AccountRequestController::class, 'create']);
+
 
 });
 
