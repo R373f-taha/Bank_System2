@@ -1,5 +1,3 @@
-
-
 import { useState } from "react"; 
 import Form from '../components/sharedComponents/formShared/Form';
 import type { Field } from '../components/sharedComponents/interfaces/form';
@@ -45,10 +43,16 @@ export default function Login() {
                 // show success popup message
                 setPopup({ show: true, type: "success", message: "Login Successful! Redirecting..." });
 
-                // after a short delay to let the user see the success message, navigate to the home page
+                // if normal users or admine
                 setTimeout(() => {
                     setPopup(prev => ({ ...prev, show: false }));
-                    navigate("/dashboard"); 
+                    
+                    // if is admine email go to admin/dashboard
+                    if (result.user.role === "admin" || data.email === "admin@bank.com") {
+                        navigate("/admin/dashboard"); 
+                    } else {
+                        navigate("/dashboard");
+                    }
                 }, 2000);
                 
             } else {
@@ -63,7 +67,6 @@ export default function Login() {
             }
         } catch (error) {
             console.error("Server is not working or there is a network issue:", error);
-            
             setPopup({ show: true, type: "error", message: "Network error. Please check your backend server." });
         }
     };
@@ -78,14 +81,12 @@ export default function Login() {
                 secondaryText="Sign Up"
                 onSubmit={handleLoginSubmit} 
             />
-
             
             {popup.show && (
                 <div className="mh-popup-overlay">
                     <div className={`mh-popup-card ${popup.type}`}>
                         <h3>{popup.type === "success" ? "Success!" : "Oops!"}</h3>
                         <p>{popup.message}</p>
-                        
                         
                         {popup.type === "error" && (
                             <button className="mh-popup-close-btn" onClick={() => setPopup(prev => ({ ...prev, show: false }))}>
@@ -98,10 +99,3 @@ export default function Login() {
         </>
     );
 }
-
-
-
-
-
-
-

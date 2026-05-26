@@ -1,12 +1,17 @@
+export interface SelectOption {
+    label: string;
+    value: string;
+}
 
-export interface Field{
-    name:string;
-    type:string;
-    placeholder:string;
+export interface Field {
+    name: string;
+    type: string; 
+    placeholder: string;
+    options?: SelectOption[]; 
 }
 
 export interface SharedFormProps {
-    title: "Login" | "Sign Up"; 
+    title: "Login" | "Create Bank Account" | "Verify Account"; 
     description: string;
     fields: Field[];
     submitText: string;
