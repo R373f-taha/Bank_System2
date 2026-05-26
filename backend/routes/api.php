@@ -15,6 +15,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::post('account/account-request', [AccountRequestController::class, 'create']);
-Route::post('account/{accountRequest}/accept',[AccountRequestController::class,'acceptRequest'])->middleware('is_admin');
- Route::post('account/{accountRequest}/reject', [AccountRequestController::class, 'reject']);
+Route::post('account/{accountRequest}/accept',[AccountRequestController::class,'acceptRequest'])->middleware(['auth:sanctum','is_admin']);
+ Route::post('account/{accountRequest}/reject', [AccountRequestController::class, 'reject'])->middleware(['auth:sanctum','is_admin']);;
 Route::post('account/verify', [AccountRequestController::class, 'verify']);
+Route::get('account/requests',[AccountRequestController::class,'index'])->middleware(['auth:sanctum','is_admin']);
