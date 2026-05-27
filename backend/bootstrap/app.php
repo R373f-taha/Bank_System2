@@ -13,12 +13,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-     $middleware->prepend(\Illuminate\Http\Middleware\HandleCors::class);
-      $middleware->alias([
-        
-        'is_admin' => AdminMiddleware::class,
-
-    ]);
+        $middleware->use([
+            \Illuminate\Http\Middleware\HandleCors::class,
+        ]);
+        $middleware->alias([
+            'is_admin' => AdminMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

@@ -16,7 +16,7 @@ export default function VerifyAccount() {
         message: ""
     });
 
-    // 
+    // field of form
     const verifyFields: Field[] = [
         { 
             name: "email", 
@@ -29,13 +29,13 @@ export default function VerifyAccount() {
             placeholder: "Enter 8-Character Code"
         }
     ];
-
+    //handle data
     const handleVerifySubmit = async (data: Record<string, string>) => {
         setPopup({ show: true, type: "info", message: "Checking verification status..." });
 
         try {
             // use email come from state
-            const targetEmail = data.email || incomingEmail;
+            const targetEmail = data.email && data.email.trim() !== "" ? data.email : incomingEmail;
 
             const response = await fetch("http://127.0.0.1:8000/api/verify-account", {
                 method: "POST",

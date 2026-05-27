@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Requests\AccounRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -14,7 +16,16 @@ class AccountRequestFormRequest extends FormRequest
     {
         return true; // Allow all users to make this request
     }
-
+protected function failedValidation(Validator $validator)
+{
+    throw new HttpResponseException(
+        response()->json([
+            'success' => false,
+            'message' => 'Validation failed',
+            'errors' => $validator->errors(),
+        ], 422)
+    );
+}
     /**
      * Get the validation rules that apply to the request.
      *

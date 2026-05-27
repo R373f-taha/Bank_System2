@@ -80,7 +80,7 @@
 .mh-auth-inputs input,
 .mh-form-select {
     width: 100%;
-    height: 75px;
+    height: 80px;
     border-radius: 88px;
     padding: 24px;
     background: #1A1A1A;
@@ -118,8 +118,8 @@
 .mh-auth-inputs input::placeholder {
     font-weight: 300;
     font-style: Light;
-    font-size: 18px;
-    color: rgba(89, 89, 90, 1);
+    font-size: 20px;
+    color: white;
 }
 
 .mh-auth-inputs input:focus,
@@ -272,6 +272,18 @@
     object-fit: contain;
     position: relative;
     z-index: 1;
+}
+.mh-popup-card.info h3 {
+    color: #33aaff;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+@media screen and (min-width: 1441px) {
+    .mh-login-page {
+        max-width: 1326px;
+        margin: 198px auto 150px;
+        padding: 100px 150px;
+    }
 }
 
 /* Media Queries */
