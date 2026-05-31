@@ -6,7 +6,7 @@
 
 /* Login Page Container  */
 .mh-login-page {
-    margin: 198px 297px 150px;
+    margin: 198px auto 150px;
     padding: 100px 150px;
     display: flex;
     justify-content: center;
@@ -278,10 +278,11 @@
     font-size: 24px;
     margin-bottom: 15px;
 }
+
 @media screen and (min-width: 1441px) {
     .mh-login-page {
-        max-width: 1326px;
-        margin: 198px auto 150px;
+        max-width: 1600px;
+        margin: 198px 30px 150px;
         padding: 100px 150px;
     }
 }
@@ -289,7 +290,8 @@
 /* Media Queries */
 @media screen and (max-width:1440px) {
     .mh-login-page {
-        margin: 123px 188px 120px;
+        max-width: 1400px;
+        margin: 123px 100px 120px;
         border-radius: 16px;
         padding: 80px 200px;
     }

@@ -89,7 +89,7 @@ export default function CreatAccount() {
     return (
         <>
             <Form
-                title="Create Bank Account"
+                title="Submit Request"
                 description="Please fill in your authentic details below to submit an official bank account opening request."
                 submitText="Submit Request"
                 secondaryText="Login"

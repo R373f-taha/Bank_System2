@@ -1,4 +1,3 @@
-
 import { NavLink } from "react-router-dom";
 import './NavBar.css';
 import { useState } from "react";
@@ -28,14 +27,12 @@ const NavBar = ({ logo, items, btn, smallBtn }: NavBarProps) => {
                         </li>
                     ))}
                 </ul>
-                <div className="js_signUp_logIn">
-                    <p>
-                        <NavLink to={btn[0].href}>{btn[0].content}</NavLink>
-                    </p>
-                    <button>
-                        <NavLink to={btn[1].href}>{btn[1].content}</NavLink>
-                    </button>
-                </div>
+                {btn.length > 0 && (
+                    <div className="js_signUp_logIn">
+                        <p><NavLink to={btn[0].href}>{btn[0].content}</NavLink></p>
+                        <button><NavLink to={btn[1].href}>{btn[1].content}</NavLink></button>
+                    </div>
+                )}
                 <button className="js_mobile_nav js_mobile_button" onClick={moveNavBar}>
                     <img src={smallBtn} className="js_strokes" alt="menu icon" />
                 </button>
@@ -56,12 +53,16 @@ const NavBar = ({ logo, items, btn, smallBtn }: NavBarProps) => {
                             </NavLink>
                         </li>
                     ))}
-                    <li onClick={() => js_setOpen(false)}>
-                        <NavLink to={btn[0].href}>{btn[0].content}</NavLink>
-                    </li>
-                    <li onClick={() => js_setOpen(false)}>
-                        <NavLink to={btn[1].href}>{btn[1].content}</NavLink>
-                    </li>
+                    {btn.length > 0 && (
+                        <>
+                            <li onClick={() => js_setOpen(false)}>
+                                <NavLink to={btn[0].href}>{btn[0].content}</NavLink>
+                            </li>
+                            <li onClick={() => js_setOpen(false)}>
+                                <NavLink to={btn[1].href}>{btn[1].content}</NavLink>
+                            </li>
+                        </>
+                    )}
                 </ul>
             </div>
         </>
