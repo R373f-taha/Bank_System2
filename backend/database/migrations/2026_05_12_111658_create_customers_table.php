@@ -14,11 +14,10 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->unique();
-            $table->string('phone', 20)->nullable();
-            $table->text('address')->nullable();
-            $table->date('date_of_birth')->nullable();
-            $table->enum('account_type', ['savings', 'checking'])->default('savings');
-            $table->decimal('account_balance', 15, 2)->default(0.00);
+            $table->string('email')->unique();
+            $table->enum('status', ['active','un_active'])->default('active');
+            $table->string('account_code')->unique();
+            $table->decimal('balance', 15, 2)->default(0.00);
             $table->timestamps();
             $table->softDeletes();
         });

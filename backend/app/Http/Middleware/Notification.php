@@ -29,7 +29,7 @@ class Notification
             return response()->json(['message' => 'This notification doesn`t exist'],404);
         }
 
-          if ($notification->id !== $request->user()->id) {
+          if ($notification->user_id !== $request->user()->id) {
             return response()->json(['message' => 'This notification is not for you😐😐'], 403);
         }
  return $next($request);

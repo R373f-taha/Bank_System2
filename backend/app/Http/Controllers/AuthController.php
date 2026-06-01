@@ -3,6 +3,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccountRequest;
+use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,17 +26,33 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+            $accountRequest = AccountRequest::where('email', $user->email)
+        ->where('status', 'accepted')
+        ->first();
+
+    if ($accountRequest) {
+        $customer = Customer::create([
+            'user_id' => $user->id,
+            'email'=>$user->email,
+            'status' => 'active',
+            'account_code' => $accountRequest->verification_code,
+            'balance' => $accountRequest->deposit_amount
+        ]);
+    }
+
+
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'user' => $user,
             'token' => $token,
         ]);
+
     }
 
     public function login(Request $request)
     {
-      
+
 
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json(['message' => 'Invalid credentials'], 401);

@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Events\AccountRequestAcceptedEvent;
 use App\Events\ArticlePublished;
+use App\Events\TransferCompletedEvent;
 use App\Listeners\SendAccountRequestAcceptedEmail;
 use App\Listeners\SendArticlePublishedNotification;
-
+use App\Listeners\SendTransferEmail;
+use App\Listeners\SendTransferNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -16,6 +18,11 @@ class EventServiceProvider extends ServiceProvider
     AccountRequestAcceptedEvent::class => [
         SendAccountRequestAcceptedEmail::class,
     ],
+
+    TransferCompletedEvent::class=>[
+        SendTransferNotification::class,
+        SendTransferEmail::class
+    ]
 ];
     /**
      * Register services.

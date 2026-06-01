@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AccountRequestController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\TransferController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -45,4 +46,9 @@ Route::middleware('auth:sanctum')->group(function () {
        });
     });
 
+});
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/transfers', [TransferController::class, 'store']);
 });

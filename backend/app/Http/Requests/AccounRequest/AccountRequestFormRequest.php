@@ -35,7 +35,7 @@ protected function failedValidation(Validator $validator)
     {
         return [
             'full_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|unique:account_requests,email|max:255',
             'date_of_birth' => 'required|date|before:today',
             'gender' => 'required|in:male,female',
             'marital_status' => 'required|in:single,married,divorced,widowed',

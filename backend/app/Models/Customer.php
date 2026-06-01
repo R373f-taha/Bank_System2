@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory; 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-    use HasFactory; 
+    use HasFactory;
 
     protected $guarded = [];
 
@@ -24,5 +24,13 @@ class Customer extends Model
     public function testimonials()
     {
         return $this->hasMany(Testimonials::class);
+    }
+
+    public function sentTransfer(){
+        return $this->hasMany(Transfer::class,'sender_id');
+    }
+
+    public function receivedTransfers(){
+        return $this->hasMany(Transfer::class,'receiver_id');
     }
 }
