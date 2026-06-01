@@ -6,6 +6,7 @@ use App\Http\Controllers\AccountRequestController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TransferController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WithdrawalController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -51,4 +52,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/transfers', [TransferController::class, 'store']);
+    Route::post('/withdrawals', [WithdrawalController::class, 'store']);
 });
