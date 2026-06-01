@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
-    use HasFactory, SoftDeletes; 
+    use HasFactory, SoftDeletes;
 
     protected $guarded = [];
 
@@ -23,6 +23,10 @@ class Transaction extends Model
     public function customer()
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    public function transfer(){
+        return $this->belongsTo(Transfer::class);
     }
 
     public function getFormattedAmountAttribute(): string

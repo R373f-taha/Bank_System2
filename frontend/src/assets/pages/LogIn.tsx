@@ -1,36 +1,33 @@
-
-
 import { useState } from "react"; 
 import Form from '../components/sharedComponents/formShared/Form';
 import type { Field } from '../components/sharedComponents/interfaces/form';
 import { useNavigate } from "react-router-dom";
 
-// function to handle login form submission and connect with Laravel backend
 export default function Login() {
     const navigate = useNavigate(); 
-
-    //hook to manage popup state for showing success or error messages after login attempt
-    const [popup, setPopup] = useState<{ show: boolean; type: "success" | "error"; message: string }>({
+    //popUp
+    const [popup, setPopup] = useState<
+    { show: boolean; type: "success" | "error"; message: string }>({
         show: false,
         type: "success",
         message: ""
     });
-
+    //array to log in
     const loginFields: Field[] = [
         { name: "email", type: "email", placeholder: "Enter your Email" },
         { name: "password", type: "password", placeholder: "Enter your Password" },
     ];
-
-    // connecting the login form with the Laravel backend API
+    //handleDta after submite
     const handleLoginSubmit = async (data: Record<string, string>) => {
+        
+        const formData = new FormData();
+        formData.append("email", data.email);
+        formData.append("password", data.password);
+
         try {
             const response = await fetch("http://127.0.0.1:8000/api/login", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json",
-                },
-                body: JSON.stringify(data), 
+                body: formData, 
             });
 
             const result = await response.json();
@@ -38,32 +35,33 @@ export default function Login() {
             if (response.ok) {
                 console.log("Successful LogIn ", result);
                 
-                // put token and user data in localStorage for later use
+                // save Data in localStorage
                 localStorage.setItem("token", result.token);
                 localStorage.setItem("user", JSON.stringify(result.user));
 
-                // show success popup message
                 setPopup({ show: true, type: "success", message: "Login Successful! Redirecting..." });
 
-                // after a short delay to let the user see the success message, navigate to the home page
                 setTimeout(() => {
                     setPopup(prev => ({ ...prev, show: false }));
-                    navigate("/dashboard"); 
+                    
+                    // validation if users or admine
+                    if (result.user.role === "admin") {
+                        navigate("/admin/dashboard"); 
+                    } else {
+                        navigate("/dashboard");
+                    }
                 }, 2000);
                 
             } else {
                 console.error("Login failed:", result.message);
-                
-                // show error popup message with the reason for login failure
                 setPopup({ 
                     show: true, 
                     type: "error", 
-                    message: result.message || "Invalid email or password. Please try again." 
+                    message: result.message || "Invalid email or password." 
                 });
             }
         } catch (error) {
-            console.error("Server is not working or there is a network issue:", error);
-            
+            console.error("Network error:", error);
             setPopup({ show: true, type: "error", message: "Network error. Please check your backend server." });
         }
     };
@@ -78,15 +76,13 @@ export default function Login() {
                 secondaryText="Sign Up"
                 onSubmit={handleLoginSubmit} 
             />
-
             
+            {/* Popup UI remains the same */}
             {popup.show && (
                 <div className="mh-popup-overlay">
                     <div className={`mh-popup-card ${popup.type}`}>
                         <h3>{popup.type === "success" ? "Success!" : "Oops!"}</h3>
                         <p>{popup.message}</p>
-                        
-                        
                         {popup.type === "error" && (
                             <button className="mh-popup-close-btn" onClick={() => setPopup(prev => ({ ...prev, show: false }))}>
                                 Close
@@ -98,10 +94,3 @@ export default function Login() {
         </>
     );
 }
-
-
-
-
-
-
-

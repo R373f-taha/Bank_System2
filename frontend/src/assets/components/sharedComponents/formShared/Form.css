@@ -1,11 +1,11 @@
-    * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    }
+}
 
-    /*  Login Page Container  */
-    .mh-login-page {
+/* Login Page Container  */
+.mh-login-page {
     margin: 198px 297px 150px;
     padding: 100px 150px;
     display: flex;
@@ -22,10 +22,9 @@
     background-size: cover;
     background-position: center;
     border: 1px solid #262626;
-    }
+}
 
-
-    .image-container {
+.image-container {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -34,74 +33,107 @@
     background-color: rgba(0, 0, 0, 0.1);
     pointer-events: none;
     z-index: 1;
-    }
+}
 
-    .mh-login-page .mh-mainTexture {
+.mh-login-page .mh-mainTexture {
     position: absolute;
     top: 0;
     right: 0;
     z-index: 0;
-    }
+}
 
-    /* Login Card */
-    .mh-login-card {
+/* Login Card */
+.mh-login-card {
     width: 100%;
     text-align: center;
     position: relative;
     z-index: 2;
-    }
+}
 
-    /*Title & Description */
-    .mh-title {
+/* Title & Description */
+.mh-title {
     font-weight: 500;
     font-style: Medium;
     font-size: 48px;
     margin-bottom: 20px;
     color: #CAFF33;
-    }
+}
 
-    .mh-desc {
+.mh-desc {
     font-family: Lexend;
     font-weight: 300;
     font-size: 18px;
     margin-bottom: 80px;
     color: rgba(191, 191, 191, 1);
-    }
+}
 
-    /* Inputs Container (Shared) */
-    .mh-auth-inputs {
+/* Inputs Container (Shared) */
+.mh-auth-inputs {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
     margin-bottom: 40px;
     align-items: center;
-    }
+}
 
-    /* Email / Text Inputs */
-    .mh-auth-inputs input {
+
+.mh-auth-inputs input,
+.mh-form-select {
     width: 100%;
-    height: 75px;
+    height: 80px;
     border-radius: 88px;
     padding: 24px;
     background: #1A1A1A;
     border: 1px solid rgba(38, 38, 38, 1);
     color: #fff;
-    }
+    font-size: 18px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
 
-    .mh-auth-inputs input::placeholder {
+
+.mh-form-select {
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2359595a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: right 24px center;
+    background-size: 18px;
+    cursor: pointer;
+}
+
+.mh-form-select option {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 10px;
+}
+
+
+.mh-form-select:invalid,
+.mh-form-select option[value=""] {
+    color: rgba(89, 89, 90, 1);
+}
+
+.mh-auth-inputs input::placeholder {
     font-weight: 300;
     font-style: Light;
-    font-size: 18px;
-    color: rgba(89, 89, 90, 1);
-    }
+    font-size: 20px;
+    color: white;
+}
 
-    /* Password Wrapper */
-    .mh-password-wrapper {
+.mh-auth-inputs input:focus,
+.mh-form-select:focus {
+    border-color: #CAFF33;
+}
+
+/* Password Wrapper */
+.mh-password-wrapper {
     width: 100%;
     position: relative;
-    }
+}
 
-    .mh-password-wrapper input {
+.mh-password-wrapper input {
     width: 100%;
     height: 75px;
     padding: 24px;
@@ -109,9 +141,9 @@
     background: #1A1A1A;
     border: 1px solid rgba(38, 38, 38, 1);
     color: #fff;
-    }
+}
 
-    .mh-password-eye {
+.mh-password-eye {
     position: absolute;
     right: 29.25px;
     top: 29.25px;
@@ -119,25 +151,25 @@
     height: 16.5px;
     cursor: pointer;
     z-index: 2;
-    }
+}
 
-    /* Forgot Password Link */
-    .mh-forgot {
+/* Forgot Password Link */
+.mh-forgot {
     font-weight: 400;
     font-size: 18px;
     line-height: 150%;
     color: rgba(255, 255, 255, 1);
     text-decoration: underline !important;
-    }
+}
 
-    /*  Buttons  */
-    .mh-loginOrSignup {
+/* Buttons  */
+.mh-loginOrSignup {
     display: flex;
     flex-direction: column;
     align-items: center;
-    }
+}
 
-    .mh-btn-login {
+.mh-btn-login {
     width: 100%;
     max-width: 518px;
     height: 63px;
@@ -150,29 +182,32 @@
     font-size: 18px !important;
     line-height: 150%;
     color: #262626 !important;
-    }
+    border: none;
+    cursor: pointer;
+}
 
-    .mh-btn-signup {
+.mh-btn-signup {
     width: 100%;
     max-width: 518px;
     height: 63px;
     border-radius: 63px;
-    padding-top: 18px 20px;
+    padding: 18px 20px; 
     margin-bottom: 24px;
     background: rgba(38, 38, 38, 1);
     border: 1px solid rgba(51, 51, 51, 1);
-    }
+    cursor: pointer;
+}
 
-    .mh-btn-signup a {
+.mh-btn-signup a {
     font-weight: 400;
     font-size: 18px;
     line-height: 150%;
     color: #ffffff;
     text-decoration: none;
-    }
+}
 
-    /*  Divider */
-    .mh-divider {
+/* Divider */
+.mh-divider {
     display: flex;
     align-items: center;
     justify-self: center;
@@ -180,32 +215,32 @@
     margin-bottom: 30px;
     width: 100%;
     justify-content: center;
-    }
+}
 
-    .mh-divider span {
+.mh-divider span {
     background: #333;
     width: 100%;
     max-width: 165px;
     border: 1px solid rgba(179, 179, 179, 1);
-    }
+}
 
-    .mh-divider p {
+.mh-divider p {
     font-weight: 400;
     font-size: 18px;
     line-height: 150%;
     text-align: center;
     vertical-align: middle;
     color: rgba(179, 179, 179, 1);
-    }
+}
 
-    /*  Social Icons */
-    .mh-social {
+/* Social Icons */
+.mh-social {
     display: flex;
     justify-content: center;
     gap: 24px;
-    }
+}
 
-    .mh-social-icon {
+.mh-social-icon {
     position: relative;
     display: flex;
     align-items: center;
@@ -215,10 +250,9 @@
     border-radius: 70px;
     padding: 12px;
     background: linear-gradient(180deg, rgba(202, 255, 51, 0.05) 0%, rgba(202, 255, 51, 0) 100%);
+}
 
-    }
-
-    .mh-social-icon::before {
+.mh-social-icon::before {
     content: "";
     position: absolute;
     inset: 50% auto auto 50%;
@@ -230,19 +264,30 @@
     border: 1px solid;
     border-image-source: linear-gradient(180deg, rgba(202, 255, 51, 0.2) -173.65%, rgba(202, 255, 51, 0) 87.22%);
     z-index: 0;
-    }
+}
 
-    .mh-social-icon img {
+.mh-social-icon img {
     width: 30px;
     height: 30px;
     object-fit: contain;
     position: relative;
     z-index: 1;
+}
+.mh-popup-card.info h3 {
+    color: #33aaff;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+@media screen and (min-width: 1441px) {
+    .mh-login-page {
+        max-width: 1326px;
+        margin: 198px auto 150px;
+        padding: 100px 150px;
     }
+}
 
-    /* Media Queries */
-
-    @media screen and (max-width:1440px) {
+/* Media Queries */
+@media screen and (max-width:1440px) {
     .mh-login-page {
         margin: 123px 188px 120px;
         border-radius: 16px;
@@ -273,9 +318,16 @@
 
     .mh-inputs input,
     .mh-signin-inputs input,
-    .mh-auth-inputs input {
+    .mh-auth-inputs input,
+    .mh-form-select {
         height: 64px;
         padding: 20px;
+        font-size: 16px;
+    }
+
+    .mh-form-select {
+        background-position: right 20px center;
+        background-size: 16px;
     }
 
     .mh-password-wrapper {
@@ -285,7 +337,6 @@
     .mh-password-wrapper input {
         height: 64px;
         padding: 20px;
-
     }
 
     .mh-password-eye {
@@ -312,7 +363,7 @@
         width: 100%;
         max-width: 404px;
         height: 49px;
-        padding-top: 14px 24px;
+        padding: 14px 24px;
     }
 
     .mh-btn-signup a {
@@ -351,15 +402,15 @@
         width: 24px;
         height: 24px;
     }
-    }
+}
 
-    @media screen and (max-width:1260px) {
+@media screen and (max-width:1260px) {
     .mh-auth-inputs {
         grid-template-columns: 1fr;
     }
-    }
+}
 
-    @media screen and (max-width:992px) {
+@media screen and (max-width:992px) {
     .mh-login-page {
         margin: 138px 16px 80px;
         border-radius: 16px;
@@ -388,12 +439,20 @@
         margin-bottom: 24px;
     }
 
+
     .mh-inputs input,
     .mh-signin-inputs input,
-    .mh-auth-inputs input {
+    .mh-auth-inputs input,
+    .mh-form-select {
         height: 56px;
         padding: 16px;
         max-width: 100%;
+        font-size: 14px;
+    }
+
+    .mh-form-select {
+        background-position: right 16px center;
+        background-size: 14px;
     }
 
     .mh-password-wrapper {
@@ -436,11 +495,9 @@
     .mh-divider p {
         font-size: 13px;
     }
-    }
+}
 
-
-/*popUp style*/
-
+/* popUp style */
 .mh-popup-overlay {
     position: fixed;
     top: 0;
@@ -453,7 +510,6 @@
     align-items: center;
     z-index: 9999;
 }
-
 
 .mh-popup-card {
     background: #1a1a1a;
@@ -484,7 +540,6 @@
     margin-bottom: 25px;
 }
 
-
 .mh-popup-close-btn {
     background: #CAFF33;
     color: #262626;
@@ -501,7 +556,7 @@
     opacity: 0.9;
 }
 
-/*force the browser take my css Style*/
+/* force the browser take my css Style */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 

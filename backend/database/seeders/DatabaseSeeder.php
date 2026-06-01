@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
-        
+        $this->call(AdminUserSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(CustomerSeeder::class);
         $this->call(ProductSeeder::class);
@@ -27,5 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TestimonialsSeeder::class);
         $this->call(FaqsSeeder::class);
         $this->call(FeatureSeeder::class);
+
     }
 }

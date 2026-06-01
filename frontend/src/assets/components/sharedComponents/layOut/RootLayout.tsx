@@ -28,16 +28,14 @@ const RootLayout = () => {
     
     const navItems: NavItem[] = [
         { content: "Home", href: "/" },
-        { content: "About", href: "/about" },
-        { content: "Security", href: "/security" },
-        { content: "Careers", href: "/careers" },
         { content: "Dashboard", href: "/dashboard" },
+        { content: "Admine Dashboard", href: "admin/dashboard" },
     ];
 
     
     const authButtons: NavItem[] = [
         { content: "Login", href: "/login" },
-        { content: "Sign Up", href: "/signup" }
+        { content: "Create Account", href: "/signup" }
     ];
 
     return (

@@ -1,12 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Home from '../pages/Home';
-import About from '../pages/About';
-import Careers from '../pages/Careers';
 import LogIn from '../pages/LogIn';
-import SignUp from '../pages/SignUp';
-import Security from '../pages/Security';
 import RootLayout from '../components/sharedComponents/layOut/RootLayout';
 import Dashboard from '../pages/Dashboard';
+import CreatAccount from "../pages/CreatAccount"; 
+import AdminDashboard from '../pages/AdminDashboard';
+import VerifyAccount from '../pages/VerifyAccount';
+
 
 export const router = createBrowserRouter([{
     path:'/',
@@ -17,28 +17,24 @@ export const router = createBrowserRouter([{
             element:<Home/>
         },
         {
-            path:'about',
-            element:<About/>
-        },
-        {
-            path:'careers',
-            element:<Careers/>
-        },
-        {
-            path:'security',
-            element:<Security/>
-        },
-        {
             path:'login',
             element:<LogIn/>    
         },
         {
         path:'signup',
-        element:<SignUp />
+        element:<CreatAccount />
         },
         {
             path:'dashboard',   
             element:<Dashboard />
+        },
+        {
+            path: 'admin/dashboard',
+            element: <AdminDashboard /> 
+        },
+        {
+            path:"verify-account",
+            element:<VerifyAccount/>
         }
     ]
 }])
