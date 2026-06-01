@@ -16,13 +16,15 @@ class CustomerFactory extends Factory
     public function definition(): array
     {
         return [
-            // إنشاء مستخدم جديد تلقائياً وربطه بالعميل
             'user_id' => User::factory(), 
-            'phone' => fake()->numerify('+963 9## ### ###'), 
-            'address' => fake()->city() . ', ' . fake()->streetAddress(),
-            'date_of_birth' => fake()->date('Y-m-d', '-18 years'),
-            'account_type' => fake()->randomElement(['savings', 'checking']),
-            'account_balance' => fake()->randomFloat(2, 500, 75000), 
+            
+            'email' => $this->faker->unique()->safeEmail(),
+            
+            'status' => $this->faker->randomElement(['active', 'un_active']),
+            
+            'account_code' => 'AC-' . $this->faker->unique()->numberBetween(10000000, 99999999),
+            
+            'balance' => $this->faker->randomFloat(2, 0, 5000),
         ];
     }
 }
