@@ -57,7 +57,7 @@ export default function VerifyAccount() {
                     type: "success", 
                     message: result.message || "Your account is active! Redirecting to login..." 
                 });
-                setTimeout(() => navigate("/login"), 3000);
+                setTimeout(() => navigate("/register", { state: { email: targetEmail } }), 3000)
             } else {
                 setPopup({ 
                     show: true, 
