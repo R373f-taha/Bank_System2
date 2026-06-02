@@ -6,7 +6,8 @@ import Dashboard from '../pages/Dashboard';
 import CreatAccount from "../pages/CreatAccount"; 
 import AdminDashboard from '../pages/AdminDashboard';
 import VerifyAccount from '../pages/VerifyAccount';
-
+import Register from '../pages/Register';
+import { ProtectedRoute, AdminRoute, GuestRoute } from '../components/sharedComponents/ProtectRoute/ProtectRoute';
 
 export const router = createBrowserRouter([{
     path:'/',
@@ -18,19 +19,23 @@ export const router = createBrowserRouter([{
         },
         {
             path:'login',
-            element:<LogIn/>    
+            element:<GuestRoute><LogIn/></GuestRoute>
         },
         {
-        path:'signup',
-        element:<CreatAccount />
+            path: 'register',
+            element: <GuestRoute><Register /></GuestRoute>
+        },
+        {
+            path:'signup',
+            element:<GuestRoute><CreatAccount /></GuestRoute>
         },
         {
             path:'dashboard',   
-            element:<Dashboard />
+            element:<ProtectedRoute><Dashboard /></ProtectedRoute>
         },
         {
             path: 'admin/dashboard',
-            element: <AdminDashboard /> 
+            element: <AdminRoute><AdminDashboard /></AdminRoute>
         },
         {
             path:"verify-account",

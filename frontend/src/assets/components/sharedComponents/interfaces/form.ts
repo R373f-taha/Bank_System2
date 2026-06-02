@@ -11,7 +11,7 @@ export interface Field {
 }
 
 export interface SharedFormProps {
-    title: "Login" | "Create Bank Account" | "Verify Account"; 
+    title: "Login" | "Submit Request" | "Verify Account" | "Create Account"; 
     description: string;
     fields: Field[];
     submitText: string;
