@@ -14,19 +14,33 @@ class UserController extends Controller
         return response()->json($users);
     }
     public function getLatestTransactions()
-{
-    $user = Auth::user();
+    {
 
-    $transactions = Transaction::where('customer_id', $user->id)
-        ->with(['transfer.sender', 'transfer.receiver']) 
-        ->latest()
-        ->take(6)
-        ->get();
+        $user = Auth::user();
 
-    return response()->json([
-        'success' => true,
-        'message' => 'تم جلب آخر 6 عمليات بنجاح مع تفاصيلها.',
-        'data' => $transactions
-    ], 200);
-}
+
+        $customer = $user->customer;
+
+
+        if (!$customer) {
+            return response()->json([
+                'success' => false,
+                'message' => 'This user does not have an associated customer account.',
+                'data' => []
+            ], 404);
+        }
+
+
+        $transactions = Transaction::where('customer_id', $customer->id)
+            ->with(['transfer.sender', 'transfer.receiver'])
+            ->latest()
+            ->take(6)
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Latest 6 transactions retrieved successfully with details.',
+            'data' => $transactions
+        ], 200);
+    }
 }
