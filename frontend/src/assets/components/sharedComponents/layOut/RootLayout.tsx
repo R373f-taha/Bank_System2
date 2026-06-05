@@ -10,6 +10,7 @@ import locationIcon from "../../../images/homeImages/Location.png";
 import facebookIcon from "../../../images/homeImages/Facebook.png";
 import twitterIcon from "../../../images/homeImages/Twitter.png";
 import linkedInIcon from "../../../images/homeImages/LinkedIn.png";
+import { AuthProvider } from "../../../context/AuthContext"; 
 
 const contactData = [
     { icon: mailIcon, content: "hello@skillbridge.com" },
@@ -40,28 +41,30 @@ const RootLayout = () => {
     ];
 
     return (
-        <div className="root-layout">
-            <NavBar 
-                logo={logoImg}
-                items={navItems} 
-                btn={authButtons} 
-                smallBtn={menuIcon}
-            />
-            <main>
-                <Outlet /> 
-            </main>
-            <footer>
-                <Footer 
+        <AuthProvider> {/* ← أضف */}
+            <div className="root-layout">
+                <NavBar 
                     logo={logoImg}
                     items={navItems} 
-                    contact={contactData}
-                    icons={socialIcons}
-                    rights="© 2026 YourBank. All Rights Reserved"
-                    p="Privacy Policy"
-                    s="Terms of Service"
+                    btn={authButtons} 
+                    smallBtn={menuIcon}
                 />
-            </footer>
-        </div>
+                <main>
+                    <Outlet /> 
+                </main>
+                <footer>
+                    <Footer 
+                        logo={logoImg}
+                        items={navItems} 
+                        contact={contactData}
+                        icons={socialIcons}
+                        rights="© 2026 YourBank. All Rights Reserved"
+                        p="Privacy Policy"
+                        s="Terms of Service"
+                    />
+                </footer>
+            </div>
+        </AuthProvider> 
     );
 }
 
