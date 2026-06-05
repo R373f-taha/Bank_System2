@@ -2,9 +2,10 @@ import { useState } from "react";
 import Form from '../components/sharedComponents/formShared/Form';
 import type { Field } from '../components/sharedComponents/interfaces/form';
 import { useNavigate } from "react-router-dom";
-
+import { useAuth } from "../context/AuthContext";
 export default function Login() {
     const navigate = useNavigate(); 
+    const { login } = useAuth();
     //popUp
     const [popup, setPopup] = useState<
     { show: boolean; type: "success" | "error"; message: string }>({
@@ -34,10 +35,10 @@ export default function Login() {
 
             if (response.ok) {
                 console.log("Successful LogIn ", result);
-                
+                login(result.user);
                 // save Data in localStorage
                 localStorage.setItem("token", result.token);
-                localStorage.setItem("user", JSON.stringify(result.user));
+                
 
                 setPopup({ show: true, type: "success", message: "Login Successful! Redirecting..." });
 
