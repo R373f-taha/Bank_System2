@@ -34,11 +34,9 @@ export default function Login() {
 
             if (response.ok) {
                 console.log("Successful LogIn ", result);
+                //use context to save user data and token
+                login(result.user, result.token);
                 
-                // save Data in localStorage
-                localStorage.setItem("token", result.token);
-                localStorage.setItem("user", JSON.stringify(result.user));
-
                 setPopup({ show: true, type: "success", message: "Login Successful! Redirecting..." });
 
                 setTimeout(() => {

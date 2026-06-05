@@ -10,6 +10,7 @@ import locationIcon from "../../../images/homeImages/Location.png";
 import facebookIcon from "../../../images/homeImages/Facebook.png";
 import twitterIcon from "../../../images/homeImages/Twitter.png";
 import linkedInIcon from "../../../images/homeImages/LinkedIn.png";
+import { useAuth } from "../../../context/AuthContext"; // استيراد الـ hook
 
 const contactData = [
     { icon: mailIcon, content: "hello@skillbridge.com" },
@@ -24,12 +25,12 @@ const socialIcons = [
 ];
 
 const RootLayout = () => {
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    // reading user data from context
+    const { user } = useAuth();
     const isAdmin = user?.role === "admin";
 
     const navItems: NavItem[] = [
         { content: "Home", href: "/" },
-        { content: "Verify Account", href: "/verify-account" },
         { content: "Dashboard", href: "/dashboard" },
         ...(isAdmin ? [{ content: "Admin Dashboard", href: "admin/dashboard" }] : []),
     ];
