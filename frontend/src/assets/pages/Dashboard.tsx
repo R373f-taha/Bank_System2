@@ -69,6 +69,7 @@ export default function Dashboard() {
      //eslint-disable react-hooks/exhaustive-deps 
     useEffect(() => {
         fetchNotifications();
+        console.log("Dashboard mounted, fetching notifications...", notifications);
     }, [fetchNotifications]);
 
     return (
@@ -90,6 +91,26 @@ export default function Dashboard() {
                     onDelete={handleDelete}
                 />
             )}
+        <div className="dashboard-wrapper">
+            
+            <DashboardHeader 
+                onToggleNotifications={() => setShowNotifications(!showNotifications)} 
+                unreadCount={unreadCount}
+            />
+            
+            
+            {showNotifications && (
+                <DashboardNotification 
+                    notifications={notifications}
+                    unreadCount={unreadCount}
+                    loading={loading}
+                    onMarkAsRead={handleMarkAsRead}
+                    onMarkAllAsRead={handleMarkAllAsRead}
+                    onDelete={handleDelete}
+                />
+            )}
         </div>
+    );
+}
     );
 }
