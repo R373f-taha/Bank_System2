@@ -8,6 +8,7 @@ use App\Http\Controllers\TransferController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TransactionController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -17,6 +18,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
     Route::get('/user/latest-transactions', [UserController::class, 'getLatestTransactions']);
+    Route::post('/user/change-password', [UserController::class, 'changePassword']);
+    Route::put('/user/update-profile', [UserController::class, 'updateProfile']);
 
 
 });
@@ -54,6 +57,9 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/transfers', [TransferController::class, 'store']);
     Route::post('/withdrawals', [WithdrawalController::class, 'store']);
+    Route::post('/deposit', [TransactionController::class, 'deposit']);
+    Route::get('/balance', [TransactionController::class, 'showBalance']);
+    Route::get('/statement', [TransactionController::class, 'accountStatement']);
 });
 
 
