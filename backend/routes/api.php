@@ -7,6 +7,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TransferController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WithdrawalController;
+use App\Http\Controllers\AdminController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -15,7 +16,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
-
+    Route::get('/user/latest-transactions', [UserController::class, 'getLatestTransactions']);
 
 
 });
@@ -53,4 +54,24 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/transfers', [TransferController::class, 'store']);
     Route::post('/withdrawals', [WithdrawalController::class, 'store']);
+});
+
+
+
+Route::middleware(['auth:sanctum', 'is_admin'])->prefix('admin')->group(function () {
+
+    Route::get('/statistics', [AdminController::class, 'getStatistics']);
+
+    Route::get('/users', [AdminController::class, 'getAllUsers']);
+    Route::put('/users/{userId}', [AdminController::class, 'editUser']);
+    Route::delete('/users/{userId}', [AdminController::class, 'removeUser']);
+
+    Route::get('/customers/active', [AdminController::class, 'getActiveCustomers']);
+    Route::get('/customers/unActive', [AdminController::class, 'getUnActiveCustomers']);
+    Route::patch('/customers/{userId}/deactivate', [AdminController::class, 'deactivateCustomer']);
+
+    Route::get('/employees', [AdminController::class, 'getAllEmployees']);
+    Route::post('/employees', [AdminController::class, 'addEmployee']);
+    Route::put('/employees/{empId}', [AdminController::class, 'updateEmployee']);
+    Route::delete('/employees/{employeeId}', [AdminController::class, 'removeEmployee']); 
 });
